@@ -10,14 +10,16 @@ var path = require('path');
 var ejs = require('ejs');
 const PORT = 3001;
 
-const indexRoute = require('./routes/index');
 const puppiesRoute = require('./routes/puppies');
+const indexRoute = require('./routes/index');
 
 app.set('view engine', 'ejs');
 app.set('views', [path.join(__dirname, 'views/puppies/'),
                   path.join(__dirname, 'views/site/')]);
 
 app.use(express.static(__dirname + '/public'));
+app.use('/puppies', puppiesRoute.router);
+app.use('/', indexRoute.router);
 
 // =============================================================================
 // fire up the server
@@ -26,7 +28,5 @@ app.listen(PORT, function() {
 });
 
 module.exports = {
-  app: app,
-  indexRoute: indexRoute,
-  puppiesRoute: puppiesRoute
+  app: app
 };

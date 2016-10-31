@@ -10,20 +10,18 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 router.use(bodyParser.urlencoded({ extended: true }));
 
-var puppies = require('../models/puppy.js');
-var puppyPath = require('../models/puppy.js');
-var puppiesJSON = require('../models/puppy.js');
-var Puppy = require('../models/puppy.js');
-
-
+var puppies = require('../models/puppy.js').puppies;
+var puppyPath = require('../models/puppy.js').puppyPath;
+var puppiesJSON = require('../models/puppy.js').puppiesJSON;
+var Puppy = require('../models/puppy.js').Puppy;
 
 // show input form for all puppies
-router.get('/puppies/new', function(req, res) {
+router.get('/new', function(req, res) {
   res.render('new');
 });
 
 // save new puppy to array / JSON file and display confirmation page
-router.post('/puppies', function(req, res) {
+router.post('/', function(req, res) {
   var name = req.body.name;
   var age = Number(req.body.age);
   var url = req.body.imageurl;
@@ -46,12 +44,12 @@ router.post('/puppies', function(req, res) {
 });
 
 // show instructions for what to type into URL bar to show a single puppy :-(
-router.get('/puppies/show-one', function(req, res) {
+router.get('/show-one', function(req, res) {
   res.render('show-one');
 });
 
 // show single puppy by id
-router.get('/puppies/:id', function(req, res) {
+router.get('/:id', function(req, res) {
   var id = Number(req.params.id);
   var pup;
 

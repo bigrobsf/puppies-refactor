@@ -13,7 +13,7 @@ var puppiesJSON;
 // check for existence of JSON file and create if none
 fs.readFile(puppyPath, 'utf8', function(err, puppiesJSON) {
   if (err) {
-    // initial test population if no JSON file
+    // initial population if no JSON file
     puppies.push({name: 'April', age: 2, id: 1, url: 'https://c1.staticflickr.com/9/8529/8580614921_e0d80a8807.jpg'});
     puppies.push({name: 'Dempsey', age: 1, id: 2, url: 'https://c2.staticflickr.com/4/3717/19491512433_2368107690.jpg'});
     puppies.push({name: 'Peanuts', age: 4, id: 3, url: 'https://c1.staticflickr.com/9/8142/7321196070_1be3eb3e01.jpg'});
@@ -22,8 +22,9 @@ fs.readFile(puppyPath, 'utf8', function(err, puppiesJSON) {
 
     fs.writeFile(puppyPath, puppiesJSON);
   }
-
   puppies = JSON.parse(puppiesJSON);
+  console.log('puppy.js: puppiesArray:', puppies);
+
 });
 
 // =============================================================================
